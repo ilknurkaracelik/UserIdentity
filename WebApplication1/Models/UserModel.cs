@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebApplication1.Identity;
 
 namespace WebApplication1.Models
 {
@@ -23,4 +25,22 @@ namespace WebApplication1.Models
         [Required]
         public string Password { get; set; }
     }
+
+    public  class RoleEditModel
+    {
+        public IdentityRole Role { get; set; }
+
+        public IEnumerable<ApplicationUser> Members { get; set; }
+        public IEnumerable<ApplicationUser> NonMembers { get; set; }
+    }
+
+    public class RoleUpdateModel
+    {
+        [Required]
+        public string RoleName { get; set; }
+        public string RoleId { get; set; }
+        public string[] IdsToAdd { get; set; }
+        public string[] IdsToDelete { get; set; }
+    }
+
 }

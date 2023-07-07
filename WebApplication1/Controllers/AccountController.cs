@@ -30,6 +30,10 @@ namespace WebApplication1.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "Erişim Hakkınız Yok" });
+            }
             ViewBag.returnUrl = returnUrl;
             return View();
         }
@@ -103,6 +107,7 @@ namespace WebApplication1.Controllers
 
                 if (result.Succeeded)
                 {
+                    userManager.AddToRole(user.Id, "User");
                     return RedirectToAction("Login");
                 }
                 else

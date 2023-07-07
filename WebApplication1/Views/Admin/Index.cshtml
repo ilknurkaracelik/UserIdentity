@@ -28,7 +28,13 @@
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.UserName</td>
-                    <td>@item.Email</td>
+                    <td>
+                        @*@using (Html.BeginForm("Delete", "RoleAdmin", new { id = item.Id }))
+                        {
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        }
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new {@class="btn btn-primary btn-sm"})*@
+                    </td>
                 </tr>
             }
 
